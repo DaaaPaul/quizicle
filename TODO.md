@@ -6,4 +6,4 @@ rounds
 
 saving the cards
 
-making 'quizicle.make' appear in src
+making makefiles appear in makefile directory

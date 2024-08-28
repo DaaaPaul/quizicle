@@ -2,6 +2,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <algorithm>
+#include <random>
+#include <chrono>
+#include <thread>
+
+#define second() std::this_thread::sleep_for(std::chrono::seconds(1))
+
 using std::getline;
 using std::string;
 using std::cout;
@@ -81,8 +88,7 @@ int main() {
 				if(!found) {
 					cout << "No card matching that name." << '\n';
 				}
-			}
-			if(input[0] == 'C' && input[1] == 'B') {
+			} else if(input[0] == 'C' && input[1] == 'B') {
 				bool found = false;
 
 				for(auto i = cards.begin(); i < cards.end(); ++i) {
@@ -99,6 +105,54 @@ int main() {
 				if(!found) {
 					cout << "No card matching that name." << '\n';
 				}
+			}
+		} else if(input == "QUIZ") {
+			if(cards.size() > 2) {
+				cout << "Beginning round...\n";
+				second();
+				cout <<	"(P) = Previous (F) = Flip (N) = Next\n"
+						"--------------------------------------------------------\n\n";
+				second();
+
+				auto rng = std::default_random_engine{};		
+				std::shuffle(cards.begin(), cards.end(), rng);
+				auto i = cards.begin();
+				int cnt = 0;
+				while(i < cards.end()) {
+					cout <<  "--------------------------------------------------------\n" 
+						 << i->front.text << '\n'
+						 << "--------------------------------------------------------\n";
+
+					string input = "";
+					while(true) {
+						getline(cin, input);
+						if(input == "P") {
+							if(cnt > 0) {
+								--i;
+								continue;
+							} else {
+								cout << "Already at beginning.\n";
+							}
+						} else if(input == "F") {
+							cout <<  "--------------------------------------------------------\n" 
+								 << i->back.text << '\n'
+								 << "--------------------------------------------------------\n";
+						} else if(input == "N") {
+							if(cnt < cards.size() - 1) {
+								++i;
+								continue;
+							} else {
+								cout <<	"(R) = Redo (SR) = Smart Redo\n"
+										"--------------------------------------------------------\n\n";
+							}
+						} else {
+							cout << "Invalid command.\n";
+						}
+					++cnt;
+					}
+				}
+			} else {
+				cout << "Not enough cards to begin quiz.\n";
 			}
 		}
 	}
