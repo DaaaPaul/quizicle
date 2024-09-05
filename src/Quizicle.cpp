@@ -44,7 +44,7 @@ int main() {
 				card.name = inName;
 				cards.push_back(card);
 				cout << "New card created:" << card.name << '\n';
-				ma_engine_play_sound(&engine, "/Users/paulpeng/quizicle/sfx/New Card and Print Card.mp3", nullptr);
+				ma_engine_play_sound(&engine, "/Users/paulpeng/Programs/quizicle/sfx/New Card and Print Card.mp3", nullptr);
 			} else if(input[0] == 'R') {
 				bool found = false;
 
@@ -53,7 +53,7 @@ int main() {
 						cout << "Card removed:" << i->name << '\n';
 						cards.erase(i);
 						--i;
-						ma_engine_play_sound(&engine, "/Users/paulpeng/quizicle/sfx/Remove Card.mp3", nullptr);
+						ma_engine_play_sound(&engine, "/Users/paulpeng/Programs/quizicle/sfx/Remove Card.mp3", nullptr);
 						found = true;
 					}
 				}
@@ -68,7 +68,7 @@ int main() {
 					if(i->name == inName) {
 						cout << "Front:" << i->front.text << '\n' 
 							 << "Back:" << i->back.text << '\n';
-						ma_engine_play_sound(&engine, "/Users/paulpeng/quizicle/sfx/New Card and Print Card.mp3", nullptr);
+						ma_engine_play_sound(&engine, "/Users/paulpeng/Programs/quizicle/sfx/New Card and Print Card.mp3", nullptr);
 						found = true;
 					}
 				}
@@ -85,7 +85,7 @@ int main() {
 
 				for(auto i = cards.begin(); i < cards.end(); ++i) {
 					if(i->name == inName) {
-						ma_engine_play_sound(&engine, "/Users/paulpeng/quizicle/sfx/Change Front and Change Back.mp3", nullptr);
+						ma_engine_play_sound(&engine, "/Users/paulpeng/Programs/quizicle/sfx/Change Front and Change Back.mp3", nullptr);
 						found = true;
 						cout << "What would you like to change " << i->name << "'s front to?\n";
 						string newF = "";
@@ -102,7 +102,7 @@ int main() {
 
 				for(auto i = cards.begin(); i < cards.end(); ++i) {
 					if(i->name == inName) {
-						ma_engine_play_sound(&engine, "/Users/paulpeng/quizicle/sfx/Change Front and Change Back.mp3", nullptr);
+						ma_engine_play_sound(&engine, "/Users/paulpeng/Programs/quizicle/sfx/Change Front and Change Back.mp3", nullptr);
 						found = true;
 						cout << "What would you like to change " << i->name << "'s back to?\n";
 						string newB = "";
@@ -118,7 +118,7 @@ int main() {
 			}
 		} else if(input == "QUIZ") {
 			if(cards.size() > 2) {
-				ma_engine_play_sound(&engine, "/Users/paulpeng/quizicle/sfx/Quiz.mp3", nullptr);
+				ma_engine_play_sound(&engine, "/Users/paulpeng/Programs/quizicle/sfx/Quiz.mp3", nullptr);
 				cout << "Beginning round...\n";
 				std::this_thread::sleep_for(std::chrono::seconds(1));
 				cout <<	"(P) = Previous (F) = Flip (N) = Next (q) = quit round\n"
@@ -138,7 +138,7 @@ int main() {
 				while(getline(cin, quizInput)) {
 					if(quizInput == "q") {
 						cout << "Quitting round...\n";
-						ma_engine_play_sound(&engine, "/Users/paulpeng/quizicle/sfx/Quit.mp3", nullptr);
+						ma_engine_play_sound(&engine, "/Users/paulpeng/Programs/quizicle/sfx/Quit.mp3", nullptr);
 						std::this_thread::sleep_for(std::chrono::seconds(1));
 					 	cout << "--------------------------------------------------------\n";
 						break;
@@ -151,7 +151,7 @@ int main() {
 							cout <<  "--------------------------------------------------------\n" 
 								 << i->front.text << '\n'
 								 << "--------------------------------------------------------\n";
-							ma_engine_play_sound(&engine, "/Users/paulpeng/quizicle/sfx/Next and Previous.mp3", nullptr);
+							ma_engine_play_sound(&engine, "/Users/paulpeng/Programs/quizicle/sfx/Next and Previous.mp3", nullptr);
 							continue;
 						} else {
 							cout << "Already at beginning.\n";
@@ -160,19 +160,19 @@ int main() {
 						cout <<  "--------------------------------------------------------\n" 
 							 << i->back.text << '\n'
 							 << "--------------------------------------------------------\n";
-						ma_engine_play_sound(&engine, "/Users/paulpeng/quizicle/sfx/Flip.mp3", nullptr);
+						ma_engine_play_sound(&engine, "/Users/paulpeng/Programs/quizicle/sfx/Flip.mp3", nullptr);
 					} else if(quizInput == "N") {
 						if(ipos < cards.size() - 1) {
 							++i;
 							cout <<  "--------------------------------------------------------\n" 
 								 << i->front.text << '\n'
 								 << "--------------------------------------------------------\n";
-							ma_engine_play_sound(&engine, "/Users/paulpeng/quizicle/sfx/Next and Previous.mp3", nullptr);
+							ma_engine_play_sound(&engine, "/Users/paulpeng/Programs/quizicle/sfx/Next and Previous.mp3", nullptr);
 							continue;
 						} else {
 							cout <<	"(R) = Redo (SR) = Smart Redo\n"
 									"--------------------------------------------------------\n";
-							ma_engine_play_sound(&engine, "/Users/paulpeng/quizicle/sfx/Finish.mp3", nullptr);
+							ma_engine_play_sound(&engine, "/Users/paulpeng/Programs/quizicle/sfx/Finish.mp3", nullptr);
 						}
 					} else {
 						cout << "Invalid command.\n";

@@ -1,7 +1,3 @@
-sound effects
-
-statistics
-
 rounds
 
 saving the cards
